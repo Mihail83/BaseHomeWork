@@ -24,6 +24,21 @@ a {
   border-color: #1861ac;
 }
 
+.nav {
+    width: 100%;
+    margin: 20px 0 20px 0;
+    max-width: 1200px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: #80808038;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    list-style: none;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -60,12 +75,25 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+ 
 }
-.footer {
-  position: absolute;
+.footer { 
   bottom: 0;
-  width: 100%;
-  white-space: nowrap;
+  width: 100%;  
   line-height: 60px; /* Vertically center the text there */
+}
+.footerHWCSS {
+    width: 100%;
+    margin: 20px 0 20px 0;
+    max-width: 1200px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: #80808038;
+    text-align: center;
+}
+.border-solid {
+    border: 1px solid black;
+}
+.border-dashed {
+    border: 1px dashed black;
 }
