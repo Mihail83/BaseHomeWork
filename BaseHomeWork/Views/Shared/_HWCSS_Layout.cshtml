@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+    <header>        
         <nav class="container">                          
             <div class="row">
                 <ul class="nav justify-content-center">
@@ -21,8 +22,14 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                    </li>                    
                 </ul>
-             </div>            
+             </div> 
+            <div class="row justify-content-end border-solid">     
+                <p> Hello,  @Context.Session.GetString("user_name") &nbsp &nbsp </p>
+            </div>
         </nav>
     </header>
     <div class="container">
