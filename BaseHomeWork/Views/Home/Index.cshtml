@@ -1,26 +1,29 @@
 ﻿
+@model CatalogAndGoodViewModel
 @{
-    Layout= "~/Views/Shared/_HWCSS_Layout.cshtml";
+    Layout = "~/Views/Shared/_HWCSS_Layout.cshtml";
     ViewData["Title"] = "Home";
 }
 
 <nav class="col-xl-2 border-solid" >
-    <h2>Категории</h2>
-    <ul >
-        <li>Mobile phone</li>
-        <li>Notebook</li>
-        <li>Camera</li>
-        <li>Headphones</li>
+    <h2>Категории</h2>    
+    <ul>
+        @foreach (var catalog in Model.ListOfCatalog)
+         {
+            <li>@Html.ActionLink(catalog.Name, "Index", "Home", new { CatalogID=catalog.ID })</li>
+         }
     </ul>
 </nav>
 
 <article class="col-xl-10 border-dashed">
-    <p>
-        бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла
-        бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла
-        бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла
-    </p>
-    <p>бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла </p>
-    <p>бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла </p>
+    <table class="table-bordered padding-3-1" cellpadding="5">
+        <thead>
+            <tr><td>Name</td><td>Price</td></tr>
+        </thead>
+        @foreach (var goog in Model.ListOfGood)
+        { 
+            <tr><td>@goog.Name</td><td>@goog.Price</td></tr>
+        }
+    </table>
 
 </article>
