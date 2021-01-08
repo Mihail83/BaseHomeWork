@@ -30,10 +30,18 @@ namespace BaseHomeWork
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddSingleton(Configuration);
-            services.AddTransient<IRepo_IndexViewModel, GetHomeIndexViewModel>();
-            services.AddTransient<IRepo_OnlyRead<Good>, ADO_GoodOnlyRead>();
-            services.AddTransient<IRepo_OnlyRead<CatalogGood>, ADO_CatalogGoodOnlyRead>();
-            services.AddTransient<IRepo_OnlyRead<Catalog>, ADO_CatalogOnlyRead>();
+            if (false)
+            {
+                services.AddTransient<IRepo_IndexViewModel, ADO_IndexViewModel>();
+                services.AddTransient<IRepo_OnlyRead<Good>, ADO_GoodOnlyRead>();
+                services.AddTransient<IRepo_OnlyRead<CatalogGood>, ADO_CatalogGoodOnlyRead>();
+                services.AddTransient<IRepo_OnlyRead<Catalog>, ADO_CatalogOnlyRead>();
+            }
+            else
+            {
+                services.AddSingleton<IRepo_IndexViewModel, LinqToSql_IndexViewModel>();
+            }
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
