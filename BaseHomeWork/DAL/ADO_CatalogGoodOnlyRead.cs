@@ -20,7 +20,7 @@ namespace BaseHomeWork.DAL
         }
         public IEnumerable<CatalogGood> GetALL()
         {
-            var goods = new List<CatalogGood>();
+            var catalogGoods = new List<CatalogGood>();
 
             using SqlConnection connection = new SqlConnection(_connectionString);
             SqlCommand command = new SqlCommand($"Select * from [CatalogGood]", connection)
@@ -31,14 +31,14 @@ namespace BaseHomeWork.DAL
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                goods.Add(CreateGoodFromReader(reader));
+                catalogGoods.Add(CreateGoodFromReader(reader));
             }
-            return goods;
+            return catalogGoods;
         }
 
         public CatalogGood GetbyID(int ID)   //return only first result
         {
-            var good = new CatalogGood();
+            var catalogGood = new CatalogGood();
 
             using SqlConnection connection = new SqlConnection(_connectionString);
             SqlCommand command = new SqlCommand($"Select * from [CatalogGood] where [CatalogGood].[CatalogID]= {ID}", connection);
@@ -47,19 +47,19 @@ namespace BaseHomeWork.DAL
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                good = CreateGoodFromReader(reader);
+                catalogGood = CreateGoodFromReader(reader);
             }
-            return good;
+            return catalogGood;
         }
 
         static CatalogGood CreateGoodFromReader(SqlDataReader reader)
         {
-            var catalog = new CatalogGood
+            var catalogGood = new CatalogGood
             {
                 GoodID = Convert.ToInt32(reader["GoodID"]),
                 CatalogID = Convert.ToInt32(reader["CatalogID"])
             };
-            return catalog;
+            return catalogGood;
         }
     }
 }

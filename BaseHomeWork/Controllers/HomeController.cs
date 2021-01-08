@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Configuration;
 using BaseHomeWork.Filters;
 using BaseHomeWork.DAL;
+using BaseHomeWork.Interface.Repository;
 using Microsoft.Extensions.Configuration;
+
 
 namespace BaseHomeWork.Controllers
 {
@@ -18,18 +20,19 @@ namespace BaseHomeWork.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IRepo_IndexViewModel _indexViewModelSupplier;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IRepo_IndexViewModel indexViewModelSupplier)
         {
             _logger = logger;
-            _configuration = configuration;            
+            _configuration = configuration;
+            _indexViewModelSupplier = indexViewModelSupplier;
         }        
 
         public IActionResult Index(int CatalogID = 1)
-        {
-            var indexViewModelSupplier = new GetHomeIndexViewModel(_configuration);
-            var indexViewModel = indexViewModelSupplier.GetByCatalogID(CatalogID);           
-            return View(indexViewModel);
+        {                      
+            return View(_indexViewModelSupplier.GetByCatalogID(CatalogID));
         }
 
         public IActionResult Contact()

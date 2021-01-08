@@ -22,14 +22,12 @@ namespace BaseHomeWork.DAL
         public void CreateGood(Good good)
         {
             if (good != null)
-            { 
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    var command = new SqlCommand($"insert into Good ([ID], [Name], [Price]) values ({good.ID},'{good.Name}',{good.Price})", connection);
-                    command.CommandType = CommandType.Text;
-                    connection.Open();
-                    command.ExecuteNonQuery();                
-                }
+            {
+                using SqlConnection connection = new SqlConnection(_connectionString);                
+                var command = new SqlCommand($"insert into Good ([ID], [Name], [Price]) values ({good.ID},'{good.Name}',{good.Price})", connection);
+                command.CommandType = CommandType.Text;
+                connection.Open();
+                command.ExecuteNonQuery();                
             }
         }
 
@@ -37,13 +35,11 @@ namespace BaseHomeWork.DAL
         {
             if (good != null)
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    var command = new SqlCommand($"Delete Good from Good where Good.ID= {good.ID}", connection);
-                    command.CommandType = CommandType.Text;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
+                using SqlConnection connection = new SqlConnection(_connectionString);
+                var command = new SqlCommand($"Delete Good from Good where Good.ID= {good.ID}", connection);
+                command.CommandType = CommandType.Text;
+                connection.Open();
+                command.ExecuteNonQuery();                
             }
         }
 
@@ -101,13 +97,11 @@ namespace BaseHomeWork.DAL
         {
             if (good != null)
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    var command = new SqlCommand($"update Good set [Name]='{good.Name}', Price = {good.Price} where ID=  {good.ID}", connection);
-                    command.CommandType = CommandType.Text;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
+                using SqlConnection connection = new SqlConnection(_connectionString);
+                var command = new SqlCommand($"update Good set [Name]='{good.Name}', Price = {good.Price} where ID=  {good.ID}", connection);
+                command.CommandType = CommandType.Text;
+                connection.Open();
+                command.ExecuteNonQuery();                
             }
         }
     }

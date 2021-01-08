@@ -9,18 +9,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseHomeWork.DAL
 {
-    public class GetHomeIndexViewModel
+    public class GetHomeIndexViewModel : IRepo_IndexViewModel
     {
-        readonly ADO_GoodOnlyRead db_Good;
-        readonly ADO_CatalogGoodOnlyRead db_CatalogGood;
-        readonly ADO_CatalogOnlyRead db_Catalog;
+        readonly IRepo_OnlyRead<Good> _dbGood;
+        readonly IRepo_OnlyRead<CatalogGood> _dbCatalogGood;
+        readonly IRepo_OnlyRead<Catalog> _dbCatalog;
         
 
-        public GetHomeIndexViewModel([FromServices]IConfiguration configuration)
+        public GetHomeIndexViewModel(   [FromServices] IRepo_OnlyRead<Good> dbGood,
+                                        [FromServices] IRepo_OnlyRead<CatalogGood> dbCatalogGood,
+                                        [FromServices] IRepo_OnlyRead<Catalog> dbCatalog)
         {
-            db_Good = new ADO_GoodOnlyRead(configuration);
-            db_CatalogGood = new ADO_CatalogGoodOnlyRead(configuration);
-            db_Catalog = new ADO_CatalogOnlyRead(configuration);
+            _dbGood = dbGood;
+            _dbCatalogGood = dbCatalogGood;
+            _dbCatalog = dbCatalog;
         }
 
         public CatalogAndGoodViewModel GetByCatalogID(int catalogID)
@@ -28,8 +30,8 @@ namespace BaseHomeWork.DAL
             var IdGoodByCatalogID= new List<int>();
             var listGoodByCatalogID = new List<Good>();
 
-            var CatalogList = db_Catalog.GetALL();
-            var CatalogGood = db_CatalogGood.GetALL();
+            var CatalogList = _dbCatalog.GetALL();
+            var CatalogGood = _dbCatalogGood.GetALL();
 
             foreach (var catalogGood in CatalogGood)
             {
@@ -40,7 +42,7 @@ namespace BaseHomeWork.DAL
             }
             for (int i = 0; i < IdGoodByCatalogID.Count(); i++)
             {
-                listGoodByCatalogID.Add(db_Good.GetbyID(IdGoodByCatalogID[i]));
+                listGoodByCatalogID.Add(_dbGood.GetbyID(IdGoodByCatalogID[i]));
             }
 
             return new CatalogAndGoodViewModel(CatalogList, listGoodByCatalogID); 
