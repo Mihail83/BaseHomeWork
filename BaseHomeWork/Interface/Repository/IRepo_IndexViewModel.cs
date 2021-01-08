@@ -8,6 +8,6 @@ namespace BaseHomeWork.Interface.Repository
 {
     public interface IRepo_IndexViewModel
     {
-        CatalogAndGoodViewModel GetByCatalogID(int catalogID);
+        IndexViewModel GetByCatalogID(int catalogID);
     }
 }

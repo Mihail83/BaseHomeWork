@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace BaseHomeWork.Models
 {
-    public class CatalogAndGoodViewModel
+    public class IndexViewModel
     {
-        public CatalogAndGoodViewModel() { }
-        public CatalogAndGoodViewModel(IEnumerable<Catalog>catalogs, IEnumerable<Good> goods)
+        public IndexViewModel() { }
+        public IndexViewModel(IEnumerable<Catalog>catalogs, IEnumerable<Good> goods)
         {
             ListOfCatalog = catalogs;
             ListOfGood = goods;

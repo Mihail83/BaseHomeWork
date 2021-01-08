@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseHomeWork.DAL
 {
-    public class GetHomeIndexViewModel : IRepo_IndexViewModel
+    public class ADO_IndexViewModel : IRepo_IndexViewModel
     {
         readonly IRepo_OnlyRead<Good> _dbGood;
         readonly IRepo_OnlyRead<CatalogGood> _dbCatalogGood;
         readonly IRepo_OnlyRead<Catalog> _dbCatalog;
         
 
-        public GetHomeIndexViewModel(   [FromServices] IRepo_OnlyRead<Good> dbGood,
+        public ADO_IndexViewModel(   [FromServices] IRepo_OnlyRead<Good> dbGood,
                                         [FromServices] IRepo_OnlyRead<CatalogGood> dbCatalogGood,
                                         [FromServices] IRepo_OnlyRead<Catalog> dbCatalog)
         {
@@ -25,7 +25,7 @@ namespace BaseHomeWork.DAL
             _dbCatalog = dbCatalog;
         }
 
-        public CatalogAndGoodViewModel GetByCatalogID(int catalogID)
+        public IndexViewModel GetByCatalogID(int catalogID)
         {
             var IdGoodByCatalogID= new List<int>();
             var listGoodByCatalogID = new List<Good>();
@@ -45,7 +45,7 @@ namespace BaseHomeWork.DAL
                 listGoodByCatalogID.Add(_dbGood.GetbyID(IdGoodByCatalogID[i]));
             }
 
-            return new CatalogAndGoodViewModel(CatalogList, listGoodByCatalogID); 
+            return new IndexViewModel(CatalogList, listGoodByCatalogID); 
         }
     }
 }
